@@ -1,8 +1,11 @@
+require 'yaml'
+
 class Lint
+  @@config = YAML.load_file('../config.yml')
   attr_reader :errors
 
   LineTooLongViolations = {
-    /.{80}+/                      => :line_too_long
+    /.{#{@@config["line_length"]}}+/ => :line_too_long
   }
 
   Violations = {
