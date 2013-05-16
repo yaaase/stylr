@@ -1,0 +1,24 @@
+#!/usr/bin/env ruby
+
+require 'main'
+require_relative 'lib/file_parser'
+
+Main {
+
+  argument('filename') {
+    description "The filename to be parsed."
+    cast :string
+  }
+
+  option('meta') {
+    default false
+    description "Check for metaprogramming violations.  Defaults to false."
+  }
+
+  def run
+    filename = params['filename'].values.first
+    meta = params['meta'].values.first ? true : false
+    FileParser.new(filename, Lint.new, true).violations?(meta)
+  end
+
+}
