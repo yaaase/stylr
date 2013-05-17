@@ -1,94 +1,97 @@
 require 'yaml'
 
 class Lint
-  @@config = YAML.load_file('../config.yml')
-  attr_reader :errors
+  attr_reader :errors, :violations, :exception_violations, :metaprogramming_violations, :messages
 
-  LineTooLongViolations = {
-    /.{#{@@config["line_length"]}}+/ => :line_too_long
-  }
+  def setup_class_values
+    @line_too_long_violations = {
+      /.{#{@config["line_length"]}}+/ => :line_too_long
+    }.delete_if { |k, v| !@config[v.to_s] }
 
-  Violations = {
-    /def (self\.)?\w+[!?]? .\w+/  => :missing_parens,
-    /( )+$/                       => :trailing_whitespace,
-    /\band\b/                     => :the_word_and,
-    /\bor\b/                      => :the_word_or,
-    /\bfor\b/                     => :the_word_for,
-    /\bif\b.*\bthen\b\n/          => :multiline_if_then,
-    /\(\s|\s\)/                   => :paren_spacing,
-    /\[\s|\s\]/                   => :bracket_spacing,
-    /[^\s][{}]|{[^\s]/            => :brace_spacing,
-    /,[^ \n]/                     => :comma_spacing,
-    /\t/                          => :no_soft_tabs,
-    /[^\s]\+/                     => :no_operator_spaces,
-    /\+[^\s=]/                    => :no_operator_spaces,
-    /[^\s]-/                      => :no_operator_spaces
-  }
+    @violations = {
+      /def (self\.)?\w+[!?]? .\w+/  => :missing_parens,
+      /( )+$/                       => :trailing_whitespace,
+      /\band\b/                     => :the_word_and,
+      /\bor\b/                      => :the_word_or,
+      /\bfor\b/                     => :the_word_for,
+      /\bif\b.*\bthen\b\n/          => :multiline_if_then,
+      /\(\s|\s\)/                   => :paren_spacing,
+      /\[\s|\s\]/                   => :bracket_spacing,
+      /[^\s][{}]|{[^\s]/            => :brace_spacing,
+      /,[^ \n]/                     => :comma_spacing,
+      /\t/                          => :no_soft_tabs,
+      /[^\s]\+/                     => :no_operator_spaces,
+      /\+[^\s=]/                    => :no_operator_spaces,
+      /[^\s]-/                      => :no_operator_spaces
+    }.delete_if { |k, v| !@config[v.to_s] }
 
-  ExceptionViolations = {
-    /rescue\s*(Exception)?$/      => :rescue_class_exception
-  }
+    @exception_violations = {
+      /rescue\s*(Exception)?$/      => :rescue_class_exception
+    }.delete_if { |k, v| !@config[v.to_s] }
 
-  MetaprogrammingViolations = {
-    /\beval\b/                    => :used_eval,
-    /\bclass_eval\b/              => :used_class_eval,
-    /\bmodule_eval\b/             => :used_module_eval,
-    /\binstance_eval\b/           => :used_instance_eval,
-    /\bdefine_method\b/           => :used_define_method,
-    /\w+\.send.*".*#\{/           => :dynamic_invocation
-  }
+    @metaprogramming_violations = {
+      /\beval\b/                    => :used_eval,
+      /\bclass_eval\b/              => :used_class_eval,
+      /\bmodule_eval\b/             => :used_module_eval,
+      /\binstance_eval\b/           => :used_instance_eval,
+      /\bdefine_method\b/           => :used_define_method,
+      /\w+\.send.*".*#\{/           => :dynamic_invocation
+    }.delete_if { |k, v| !@config[v.to_s] }
 
-  CommentedLine = [
-    /^\s*#/
-  ]
+    @commented_line = [
+      /^\s*#/
+    ]
 
-  Messages = {
-    :missing_parens               => "You have omitted parentheses from a method definition with parameters.",
-    :line_too_long                => "Line length of 80 characters or more.",
-    :trailing_whitespace          => "Trailing whitespace.",
-    :used_eval                    => "Used eval.",
-    :used_define_method           => "Used define_method.",
-    :dynamic_invocation           => "Dynamic invocation of a method.",
-    :rescue_class_exception       => "Rescuing class Exception.",
-    :the_word_and                 => "Used 'and'; please use && instead.",
-    :the_word_or                  => "Used 'or'; please use || instead.",
-    :the_word_for                 => "Used 'for'; please use an enumerator, or else explain yourself adequately to the team.",
-    :multiline_if_then            => "Used 'then' on a multiline if statement.",
-    :used_class_eval              => "Used class_eval.",
-    :used_module_eval             => "Used module_eval.",
-    :used_instance_eval           => "Used instance_eval.",
-    :paren_spacing                => "Space after ( or before ).",
-    :bracket_spacing              => "Space after [ or before ].",
-    :brace_spacing                => "No space around { or before }.",
-    :comma_spacing                => "No space after a comma.",
-    :no_soft_tabs                 => "Used tab characters; please use soft tabs.",
-    :no_operator_spaces           => "Please use spaces around operators."
-  }
+    @messages = {
+      :missing_parens               => "You have omitted parentheses from a method definition with parameters.",
+      :line_too_long                => "Line length of 80 characters or more.",
+      :trailing_whitespace          => "Trailing whitespace.",
+      :used_eval                    => "Used eval.",
+      :used_define_method           => "Used define_method.",
+      :dynamic_invocation           => "Dynamic invocation of a method.",
+      :rescue_class_exception       => "Rescuing class Exception.",
+      :the_word_and                 => "Used 'and'; please use && instead.",
+      :the_word_or                  => "Used 'or'; please use || instead.",
+      :the_word_for                 => "Used 'for'; please use an enumerator, or else explain yourself adequately to the team.",
+      :multiline_if_then            => "Used 'then' on a multiline if statement.",
+      :used_class_eval              => "Used class_eval.",
+      :used_module_eval             => "Used module_eval.",
+      :used_instance_eval           => "Used instance_eval.",
+      :paren_spacing                => "Space after ( or before ).",
+      :bracket_spacing              => "Space after [ or before ].",
+      :brace_spacing                => "No space around { or before }.",
+      :comma_spacing                => "No space after a comma.",
+      :no_soft_tabs                 => "Used tab characters; please use soft tabs.",
+      :no_operator_spaces           => "Please use spaces around operators."
+    }
+  end
 
   def initialize
     @errors = []
+    @config = YAML.load_file("config.yml")
+    setup_class_values
   end
 
   def line_too_long_violation?(line, number = 1)
-    abstract_violation?(LineTooLongViolations, line, number)
+    abstract_violation?(@line_too_long_violations, line, number)
   end
 
   def violation?(line, number = 1)
     line = strip_strings(line)
-    abstract_violation?(Violations, line, number)
+    abstract_violation?(@violations, line, number)
   end
 
   def meta_violation?(line, number = 1)
-    abstract_violation?(MetaprogrammingViolations, line, number)
+    abstract_violation?(@metaprogramming_violations, line, number)
   end
 
   def exception_violation?(line, number = 1)
-    abstract_violation?(ExceptionViolations, line, number)
+    abstract_violation?(@exception_violations, line, number)
   end
 
   def abstract_violation?(list, line, number)
     list.each do |pattern, error|
-      CommentedLine.each do |comment|
+      @commented_line.each do |comment|
         return false if line[comment]
       end
 
@@ -105,9 +108,9 @@ class Lint
     string.tap do |str|
       str.gsub!(/""".*"""/, '""')
       start = /<<-?[A-Z]+/
-      finish = (str[start] || "")[/[A-Z]+/]
+        finish = (str[start] || "")[/[A-Z]+/]
       regexp = /#{start}.*\b#{finish}\b/
-      str.gsub!(/#{str[regexp]}/,'""') if str[regexp]
+        str.gsub!(/#{str[regexp]}/,'""') if str[regexp]
     end
   end
 
@@ -116,8 +119,8 @@ class Lint
   end
 
   def method_missing(method_name, *args, &block)
-    if Messages.keys.include?(method_name.to_sym)
-      Messages[method_name]
+    if @messages.keys.include?(method_name.to_sym)
+      @messages[method_name]
     else
       super(method_name, *args, &block)
     end

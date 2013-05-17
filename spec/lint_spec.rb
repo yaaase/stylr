@@ -290,14 +290,14 @@ describe Lint do
 
     it "everything has an error message" do
       expect do
-        Lint::Violations.values.each do |violation|
-          Lint::Messages.fetch(violation)
+        l.violations.values.each do |violation|
+          l.messages.fetch(violation)
         end
-        Lint::ExceptionViolations.values.each do |exception_violation|
-          Lint::Messages.fetch(exception_violation)
+        l.exception_violations.values.each do |exception_violation|
+          l.messages.fetch(exception_violation)
         end
-        Lint::MetaprogrammingViolations.values.each do |metaprogramming_violation|
-          Lint::Messages.fetch(metaprogramming_violation)
+        l.metaprogramming_violations.values.each do |metaprogramming_violation|
+          l.messages.fetch(metaprogramming_violation)
         end
       end.to_not raise_error
     end
