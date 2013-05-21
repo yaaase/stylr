@@ -41,7 +41,7 @@ class FileParser
 
   def pre_multiline_string_removal_length_check!
     @file_string.split(/\n/).each_with_index do |line, number|
-      @lint.line_too_long_violation?(line, number + 1)
+      @lint.line_too_long_violation?(line, number)
     end
   end
 

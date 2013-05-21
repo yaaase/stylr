@@ -4,6 +4,8 @@ class Lint
   attr_reader :errors, :violations, :exception_violations, :metaprogramming_violations, :messages
 
   def setup_class_values
+    @config["line_length"] += 1
+
     @line_too_long_violations = {
       /.{#{@config["line_length"]}}+/ => :line_too_long
     }.delete_if { |k, v| !@config[v.to_s] }
@@ -44,7 +46,7 @@ class Lint
 
     @messages = {
       :missing_parens               => "You have omitted parentheses from a method definition with parameters.",
-      :line_too_long                => "Line length of 80 characters or more.",
+      :line_too_long                => "Line length of #{@config['line_length']} characters or more.",
       :trailing_whitespace          => "Trailing whitespace.",
       :used_eval                    => "Used eval.",
       :used_define_method           => "Used define_method.",
