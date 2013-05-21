@@ -35,13 +35,13 @@ class FileParser
 
   def assign_lines_with_numbers!
     @file_string.each_with_index do |line, number|
-      @lines << [line, number + 1]
+      @lines << [line, number]
     end
   end
 
   def pre_multiline_string_removal_length_check!
     @file_string.split(/\n/).each_with_index do |line, number|
-      @lint.line_too_long_violation?(line, number)
+      @lint.line_too_long_violation?(line, number + 1)
     end
   end
 
