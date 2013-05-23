@@ -35,7 +35,7 @@ class FileParser
 
   def assign_lines_with_numbers!
     @file_string.each_with_index do |line, number|
-      @lines << [line, number]
+      @lines << [line, number + 1]
     end
   end
 
