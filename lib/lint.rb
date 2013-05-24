@@ -108,9 +108,9 @@ class Lint
     string.tap do |str|
       str.gsub!(/""".*"""/, '""')
       start = /<<-?[A-Z]+/
-        finish = (str[start] || "")[/[A-Z]+/]
+      finish = (str[start] || "")[/[A-Z]+/]
       regexp = /#{start}.*\b#{finish}\b/
-        str.gsub!(/#{str[regexp]}/,'""') if str[regexp]
+      str.gsub!(/#{str[regexp]}/,'""') if str[regexp]
     end
   end
 

@@ -6,9 +6,9 @@ class FileParser
   UniqueConstant = ";;;;;"
 
   def initialize(file_path, lint, display = false)
-    @lines = []
-    @lint = lint
-    @display = display
+    @lines       = []
+    @lint        = lint
+    @display     = display
     @file_string = File.read(file_path)
   end
 
