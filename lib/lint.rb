@@ -39,7 +39,6 @@ class Lint
     end
     return false
   end
-  private :abstract_violation?
 
   def strip_multiline_strings(string)
     string.tap do |str|
@@ -54,6 +53,8 @@ class Lint
   def strip_strings(line)
     line.gsub(/".*"/, '""').gsub(/'.*'/, "''")
   end
+
+  private
 
   def setup_class_values
     @line_too_long_violations = {
