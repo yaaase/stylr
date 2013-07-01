@@ -3,6 +3,58 @@ require 'yaml'
 class Lint
   attr_reader :errors, :violations, :exception_violations, :metaprogramming_violations, :messages
 
+  def initialize
+    @errors = []
+    @config = YAML.load_file("config.yml")
+    setup_class_values
+  end
+
+  def line_too_long_violation?(line, number = 1)
+    abstract_violation?(@line_too_long_violations, line, number)
+  end
+
+  def violation?(line, number = 1)
+    line = strip_strings(line)
+    abstract_violation?(@violations, line, number)
+  end
+
+  def meta_violation?(line, number = 1)
+    abstract_violation?(@metaprogramming_violations, line, number)
+  end
+
+  def exception_violation?(line, number = 1)
+    abstract_violation?(@exception_violations, line, number)
+  end
+
+  def abstract_violation?(list, line, number)
+    list.each do |pattern, error|
+      @commented_line.each do |comment|
+        return false if line[comment]
+      end
+
+      if line[pattern]
+        @errors << { error => number }
+        return true
+      end
+    end
+    return false
+  end
+  private :abstract_violation?
+
+  def strip_multiline_strings(string)
+    string.tap do |str|
+      str.gsub!(/""".*"""/, '""')
+      start = /<<-?[A-Z]+/
+      finish = (str[start] || "")[/[A-Z]+/]
+      regexp = /#{start}.*\b#{finish}\b/
+      str.gsub!(/#{str[regexp]}/,'""') if str[regexp]
+    end
+  end
+
+  def strip_strings(line)
+    line.gsub(/".*"/, '""').gsub(/'.*'/, "''")
+  end
+
   def setup_class_values
     @line_too_long_violations = {
       /.{#{@config["line_length"]}}+/ => :line_too_long
@@ -64,58 +116,6 @@ class Lint
       :no_soft_tabs                 => "Used tab characters; please use soft tabs.",
       :no_operator_spaces           => "Please use spaces around operators."
     }
-  end
-
-  def initialize
-    @errors = []
-    @config = YAML.load_file("config.yml")
-    setup_class_values
-  end
-
-  def line_too_long_violation?(line, number = 1)
-    abstract_violation?(@line_too_long_violations, line, number)
-  end
-
-  def violation?(line, number = 1)
-    line = strip_strings(line)
-    abstract_violation?(@violations, line, number)
-  end
-
-  def meta_violation?(line, number = 1)
-    abstract_violation?(@metaprogramming_violations, line, number)
-  end
-
-  def exception_violation?(line, number = 1)
-    abstract_violation?(@exception_violations, line, number)
-  end
-
-  def abstract_violation?(list, line, number)
-    list.each do |pattern, error|
-      @commented_line.each do |comment|
-        return false if line[comment]
-      end
-
-      if line[pattern]
-        @errors << { error => number }
-        return true
-      end
-    end
-    return false
-  end
-  private :abstract_violation?
-
-  def strip_multiline_strings(string)
-    string.tap do |str|
-      str.gsub!(/""".*"""/, '""')
-      start = /<<-?[A-Z]+/
-      finish = (str[start] || "")[/[A-Z]+/]
-      regexp = /#{start}.*\b#{finish}\b/
-      str.gsub!(/#{str[regexp]}/,'""') if str[regexp]
-    end
-  end
-
-  def strip_strings(line)
-    line.gsub(/".*"/, '""').gsub(/'.*'/, "''")
   end
 
   def method_missing(method_name, *args, &block)
