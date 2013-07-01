@@ -26,20 +26,6 @@ class Lint
     abstract_violation?(@exception_violations, line, number)
   end
 
-  def abstract_violation?(list, line, number)
-    list.each do |pattern, error|
-      @commented_line.each do |comment|
-        return false if line[comment]
-      end
-
-      if line[pattern]
-        @errors << { error => number }
-        return true
-      end
-    end
-    return false
-  end
-
   def strip_multiline_strings(string)
     string.tap do |str|
       str.gsub!(/""".*"""/, '""')
@@ -55,6 +41,20 @@ class Lint
   end
 
   private
+
+  def abstract_violation?(list, line, number)
+    list.each do |pattern, error|
+      @commented_line.each do |comment|
+        return false if line[comment]
+      end
+
+      if line[pattern]
+        @errors << { error => number }
+        return true
+      end
+    end
+    return false
+  end
 
   def setup_class_values
     @line_too_long_violations = {
