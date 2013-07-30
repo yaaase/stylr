@@ -3,6 +3,7 @@ GEM
   specs:
     arrayfields (4.9.0)
     chronic (0.9.1)
+    diff-lcs (1.2.4)
     fattr (2.2.1)
     main (5.2.0)
       arrayfields (>= 4.7.4)
@@ -10,9 +11,18 @@ GEM
       fattr (>= 2.2.0)
       map (>= 5.1.0)
     map (6.5.1)
+    rspec (2.14.1)
+      rspec-core (~> 2.14.0)
+      rspec-expectations (~> 2.14.0)
+      rspec-mocks (~> 2.14.0)
+    rspec-core (2.14.3)
+    rspec-expectations (2.14.0)
+      diff-lcs (>= 1.1.3, < 2.0)
+    rspec-mocks (2.14.1)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
   main
+  rspec

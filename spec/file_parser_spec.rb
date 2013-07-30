@@ -3,7 +3,7 @@ require_relative '../lib/file_parser'
 describe FileParser do
   context "sample_1" do
     before(:each) do
-      @string = "/home/mark/rslint/txt/sample_1.rb"
+      @string = "/Users/ThoughtWorks/rslint/txt/sample_1.rb"
       @f = FileParser.new(@string, Lint.new)
     end
 
@@ -14,7 +14,7 @@ describe FileParser do
 
   context "sample_fail" do
     before(:each) do
-      @string = "/home/mark/rslint/txt/sample_fail.rb"
+      @string = "/Users/ThoughtWorks/rslint/txt/sample_fail.rb"
       @f = FileParser.new(@string, Lint.new)
     end
 
@@ -25,7 +25,7 @@ describe FileParser do
 
   context "sample_pass2" do
     before(:each) do
-      @string = "/home/mark/rslint/txt/sample_pass2.rb"
+      @string = "/Users/ThoughtWorks/rslint/txt/sample_pass2.rb"
       @f = FileParser.new(@string, Lint.new)
     end
 
@@ -36,7 +36,7 @@ describe FileParser do
 
   context "sample_fail2" do
     before(:each) do
-      @string = "/home/mark/rslint/txt/sample_fail2.rb"
+      @string = "/Users/ThoughtWorks/rslint/txt/sample_fail2.rb"
       @f = FileParser.new(@string, Lint.new)
     end
 
@@ -47,7 +47,7 @@ describe FileParser do
 
   context "sample_fail3" do
     before(:each) do
-      @string = "/home/mark/rslint/txt/sample_fail3.rb"
+      @string = "/Users/ThoughtWorks/rslint/txt/sample_fail3.rb"
       @f = FileParser.new(@string, Lint.new)
     end
 
@@ -58,7 +58,7 @@ describe FileParser do
 
   context "sample_fail4" do
     before(:each) do
-      @string = "/home/mark/rslint/txt/sample_fail4.rb"
+      @string = "/Users/ThoughtWorks/rslint/txt/sample_fail4.rb"
       @f = FileParser.new(@string, Lint.new)
     end
 
@@ -69,7 +69,7 @@ describe FileParser do
 
   context "sample_fail5" do
     before(:each) do
-      @string = "/home/mark/rslint/txt/sample_fail5.rb"
+      @string = "/Users/ThoughtWorks/rslint/txt/sample_fail5.rb"
       @f = FileParser.new(@string, Lint.new)
     end
 
