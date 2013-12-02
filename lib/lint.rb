@@ -59,7 +59,7 @@ class Lint
   def setup_class_values
     @line_too_long_violations = {
       /.{#{@config["line_length"]}}+/ => :line_too_long
-    }.delete_if { |k, v| !@config[v.to_s] }
+    }.delete_if { |_, v| !@config[v.to_s] }
 
     @violations = {
       /def (self\.)?\w+[!?]? .\w+/  => :missing_parens,
@@ -76,11 +76,11 @@ class Lint
       /[^\s]\+/                     => :no_operator_spaces,
       /\+[^\s=]/                    => :no_operator_spaces,
       /[^\s]-/                      => :no_operator_spaces
-    }.delete_if { |k, v| !@config[v.to_s] }
+    }.delete_if { |_, v| !@config[v.to_s] }
 
     @exception_violations = {
       /rescue\s*(Exception)?$/      => :rescue_class_exception
-    }.delete_if { |k, v| !@config[v.to_s] }
+    }.delete_if { |_, v| !@config[v.to_s] }
 
     @metaprogramming_violations = {
       /\beval\b/                    => :used_eval,
@@ -89,7 +89,7 @@ class Lint
       /\binstance_eval\b/           => :used_instance_eval,
       /\bdefine_method\b/           => :used_define_method,
       /\w+\.send.*".*#\{/           => :dynamic_invocation
-    }.delete_if { |k, v| !@config[v.to_s] }
+    }.delete_if { |_, v| !@config[v.to_s] }
 
     @commented_line = [
       /^\s*#/
