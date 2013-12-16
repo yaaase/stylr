@@ -24,6 +24,8 @@ Optionally checks for some metaprogramming, which you might not want in a large,
 * define_method
 * send
 
+Most of these things are configurable via config.yml
+
 Currently only checks one file at a time, as I have been too lazy to support directories, etc.
 
 <b>Usage</b>
