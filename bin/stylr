@@ -19,14 +19,12 @@ module Stylr
   def run
     directory = params['directory'].values.first
     meta = params['meta'].values.first ? true : false
-    lint = Lint.new
     dir_loader = DirLoader.new
     dir_loader.load_dir(directory)
 
-    puts "filenames: #{dir_loader.filenames.inspect}"
-
     dir_loader.filenames.each do |filename|
-      FileParser.new(filename, lint, true).violations?(meta)
+      puts "Checking #{filename}..."
+      FileParser.new(filename, Lint.new, true).violations?(meta)
     end
   end
 

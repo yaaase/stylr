@@ -52,7 +52,7 @@ module Stylr
     end
 
     def display_no_error_message
-      puts "Your program is free of errors."
+      puts "Your file is free of errors."
     end
 
     def display_errors
