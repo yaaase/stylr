@@ -1,7 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = 'stylr'
-  s.executables << 'stylr'
-  s.version     = '0.0.1'
+  s.version     = '0.0.2'
   s.date        = '2013-12-20'
   s.summary     = 'stylr - enforcing Ruby coding style standards'
   s.description = 'An attempt at enforcing https://github.com/styleguide/ruby'
@@ -10,6 +9,7 @@ Gem::Specification.new do |s|
   s.homepage    = 'http://github.com/yaaase/stylr.git'
   s.license     = 'Apache'
   s.files       = `git ls-files`.split(/\n/)
+  s.executables << 'stylr'
 
   s.add_runtime_dependency 'main', '~> 5.2.0'
   s.add_development_dependency 'rspec', '~> 2.14.3'
