@@ -1,10 +1,12 @@
 #!/usr/bin/env ruby
 
 require 'main'
+require 'stylr'
 
-Main {
+module Stylr
+  Main {
 
-  argument('filename') {
+    argument('filename') {
     description "The filename to be parsed."
     cast :string
   }
@@ -17,8 +19,9 @@ Main {
   def run
     filename = params['filename'].values.first
     meta = params['meta'].values.first ? true : false
-    Stylr::FileParser.new(filename, Lint.new, true).violations?(meta)
+    FileParser.new(filename, Lint.new, true).violations?(meta)
   end
 
-}
+  }
+end
 
