@@ -1,16 +1,13 @@
 class DirLoader
   attr_reader :filenames
 
-  DEPTH = "**/**/**/**/**/**/**/**/**/**/**/**" # lol wut
-
   def load_dir(dir)
-    @filenames = Dir[File.expand_path(dir) + DEPTH].select do |f|
-      File.file?(f) &&
-        f =~ /\.rb$/
-    end.reject do |f|
-        f =~ /_spec\.rb$/ || f =~ /_test\.rb$/
+    Dir.chdir File.expand_path(dir) do
+      @filenames = Dir.glob('**/*.rb').map{|file| File.expand_path(file)}
+    end
+    @filenames.reject! do |filename|
+      filename =~ /(_spec|_test).rb$/
     end
   end
-
 end
 
