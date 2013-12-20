@@ -15,6 +15,12 @@ module Stylr
       d.load_dir(dir)
       d.filenames.should == ["#{dir}/one/one.rb", "#{dir}/two/two.rb", "#{dir}/three/three.rb", "#{dir}/base.rb"].sort
     end
+
+    it "ignores specs" do
+      dir = "/Users/Thoughtworker/stylr/spec/sdir"
+      d.load_dir(dir)
+      d.filenames.should == []
+    end
   end
 end
 

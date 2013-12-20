@@ -6,8 +6,8 @@ require 'stylr'
 module Stylr
   Main {
 
-    argument('filename') {
-    description "The filename to be parsed."
+    argument('directory') {
+    description "The directory to be parsed."
     cast :string
   }
 
@@ -17,9 +17,17 @@ module Stylr
   }
 
   def run
-    filename = params['filename'].values.first
+    directory = params['directory'].values.first
     meta = params['meta'].values.first ? true : false
-    FileParser.new(filename, Lint.new, true).violations?(meta)
+    lint = Lint.new
+    dir_loader = DirLoader.new
+    dir_loader.load_dir(directory)
+
+    puts "filenames: #{dir_loader.filenames.inspect}"
+
+    dir_loader.filenames.each do |filename|
+      FileParser.new(filename, lint, true).violations?(meta)
+    end
   end
 
   }
