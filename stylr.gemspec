@@ -1,5 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = 'stylr'
+  s.executables << 'stylr'
   s.version     = '0.0.1'
   s.date        = '2013-12-20'
   s.summary     = 'stylr - enforcing Ruby coding style standards'
