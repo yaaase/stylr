@@ -31,10 +31,14 @@ All of these things are configurable via yml.  See "stylr.yml" in the repo, and 
 
 Checks all *.rb files in the specified directory and subdirectories, excluding _spec.rb and _test.rb
 
-<b>Usage</b>
+<h4>Usage</h4>
 
 gem install stylr
 
 stylr /path/to/directory           # normal checks
 
 stylr /path/to/directory --meta    # also check for use of metaprogramming
+
+<h4>Contributing</h4>
+
+Please feel free to contribute!  There are issues and unimplemented features.  I'd love any help I can get.  Thanks!
