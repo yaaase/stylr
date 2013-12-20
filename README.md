@@ -32,6 +32,6 @@ Currently only checks one file at a time, as I have been too lazy to support dir
 
 <b>Usage</b>
 
-./rslint /path/to/source.rb           # normal checks
+./stylr /path/to/source.rb           # normal checks
 
-./rslint /path/to/source.rb --meta    # also check for use of metaprogramming
+./stylr /path/to/source.rb --meta    # also check for use of metaprogramming
