@@ -1,3 +1,5 @@
+<h1>stylr</h1>
+
 Check if source code conforms to some elements of the Github Ruby Style Guidelines ( https://github.com/styleguide/ruby )
 
 Kind of raw still.  Currently supports checking against the following:
