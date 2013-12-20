@@ -32,6 +32,8 @@ Checks all *.rb files in the specified directory and subdirectories, excluding _
 
 <b>Usage</b>
 
-./stylr /path/to/directory           # normal checks
+gem install stylr
 
-./stylr /path/to/directory --meta    # also check for use of metaprogramming
+stylr /path/to/directory           # normal checks
+
+stylr /path/to/directory --meta    # also check for use of metaprogramming
