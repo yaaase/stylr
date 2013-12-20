@@ -1,4 +1,4 @@
 source 'https://rubygems.org'
 
-gem 'main'
-gem 'rspec'
+# Specify your gem's dependencies in stylr.gemspec
+gemspec

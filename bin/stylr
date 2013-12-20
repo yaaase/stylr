@@ -1,7 +1,6 @@
 #!/usr/bin/env ruby
 
 require 'main'
-require_relative 'lib/file_parser'
 
 Main {
 
@@ -18,7 +17,8 @@ Main {
   def run
     filename = params['filename'].values.first
     meta = params['meta'].values.first ? true : false
-    FileParser.new(filename, Lint.new, true).violations?(meta)
+    Stylr::FileParser.new(filename, Lint.new, true).violations?(meta)
   end
 
 }
+

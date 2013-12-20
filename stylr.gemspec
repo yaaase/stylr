@@ -1,18 +1,25 @@
-Gem::Specification.new do |s|
-  s.name          = 'stylr'
-  s.version       = '0.0.3'
-  s.date          = '2013-12-20'
-  s.summary       = 'stylr - enforcing Ruby coding style standards'
-  s.description   = 'An attempt at enforcing https://github.com/styleguide/ruby'
-  s.authors       = ['Mark Billie']
-  s.email         = 'mbillie@gmail.com'
-  s.homepage      = 'http://github.com/yaaase/stylr.git'
-  s.license       = 'Apache'
-  s.files         = `git ls-files`.split(/\n/)
-  s.test_files    = `git ls-files -- {spec}/*`.split("\n")
-  s.require_paths = ['lib']
-  s.executables   = 'stylr'
+# coding: utf-8
+lib = File.expand_path('../lib', __FILE__)
+$LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
+require 'stylr/version'
 
-  s.add_runtime_dependency 'main', '~> 5.2.0'
-  s.add_development_dependency 'rspec', '~> 2.14.3'
+Gem::Specification.new do |spec|
+  spec.name          = "stylr"
+  spec.version       = Stylr::VERSION
+  spec.authors       = ["Mark Billie"]
+  spec.email         = ["mbillie1@gmail.com"]
+  spec.description   = %q{An attempt at enforcing https://github.com/styleguide/ruby}
+  spec.summary       = %q{stylr - enforcing Ruby coding style standards}
+  spec.homepage      = "https://github.com/yaaase/stylr.git"
+  spec.license       = "MIT"
+
+  spec.files         = `git ls-files`.split($/)
+  spec.executables   = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }
+  spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
+  spec.require_paths = ["lib"]
+
+  spec.add_runtime_dependency     "main",    "~> 5.2.0"
+  spec.add_development_dependency "bundler", "~> 1.3"
+  spec.add_development_dependency "rspec"
+  spec.add_development_dependency "rake"
 end
