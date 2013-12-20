@@ -1,15 +1,17 @@
 Gem::Specification.new do |s|
-  s.name        = 'stylr'
-  s.version     = '0.0.2'
-  s.date        = '2013-12-20'
-  s.summary     = 'stylr - enforcing Ruby coding style standards'
-  s.description = 'An attempt at enforcing https://github.com/styleguide/ruby'
-  s.authors     = ['Mark Billie']
-  s.email       = 'mbillie@gmail.com'
-  s.homepage    = 'http://github.com/yaaase/stylr.git'
-  s.license     = 'Apache'
-  s.files       = `git ls-files`.split(/\n/)
-  s.executables << 'stylr'
+  s.name          = 'stylr'
+  s.version       = '0.0.2'
+  s.date          = '2013-12-20'
+  s.summary       = 'stylr - enforcing Ruby coding style standards'
+  s.description   = 'An attempt at enforcing https://github.com/styleguide/ruby'
+  s.authors       = ['Mark Billie']
+  s.email         = 'mbillie@gmail.com'
+  s.homepage      = 'http://github.com/yaaase/stylr.git'
+  s.license       = 'Apache'
+  s.files         = `git ls-files`.split(/\n/)
+  s.test_files    = `git ls-files -- {spec}/*`.split("\n")
+  s.require_paths = ['lib']
+  s.executables   = 'bin/stylr'
 
   s.add_runtime_dependency 'main', '~> 5.2.0'
   s.add_development_dependency 'rspec', '~> 2.14.3'
