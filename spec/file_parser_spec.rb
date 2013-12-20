@@ -1,6 +1,7 @@
 require "stylr"
 
 module Stylr
+  YAML_FILE_LOCATION = "/Users/Thoughtworker/stylr/stylr.yml"
   describe FileParser do
     context "sample_1" do
       before(:each) do

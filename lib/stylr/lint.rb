@@ -5,7 +5,7 @@ class Lint
 
   def initialize
     @errors = []
-    @config = YAML.load_file("stylr.yml")
+    @config = YAML.load_file(Stylr::YAML_FILE_LOCATION)
     setup_class_values
   end
 
