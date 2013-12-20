@@ -28,10 +28,10 @@ Optionally checks for some metaprogramming, which you might not want in a large,
 
 All of these things are configurable via yml.  See "stylr.yml" in the repo, and place it in "~/.stylr.yml"
 
-Currently only checks one file at a time, as I have been too lazy to support directories, etc.
+Checks all *.rb files in the specified directory and subdirectories, excluding _spec.rb and _test.rb
 
 <b>Usage</b>
 
-./stylr /path/to/source.rb           # normal checks
+./stylr /path/to/directory           # normal checks
 
-./stylr /path/to/source.rb --meta    # also check for use of metaprogramming
+./stylr /path/to/directory --meta    # also check for use of metaprogramming
