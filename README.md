@@ -1,6 +1,7 @@
 <h1>stylr</h1>
+<h4>a Ruby styleguide enforcer</h4>
 
-Check if source code conforms to some elements of the Github Ruby Style Guidelines ( https://github.com/styleguide/ruby )
+This gem will check if source code conforms to some elements of the Github Ruby Style Guidelines (https://github.com/styleguide/ruby) - currently supporting Ruby 1.9.3+ (although who knows, it might work with earlier versions)
 
 Kind of raw still.  Currently supports checking against the following:
 
