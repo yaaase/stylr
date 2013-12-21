@@ -5,29 +5,27 @@ require 'stylr'
 
 module Stylr
   Main {
-
     argument('directory') {
-    description "The directory to be parsed."
-    cast :string
-  }
+      description "The directory to be parsed."
+      cast :string
+    }
 
-  option('meta') {
-    default false
-    description "Check for metaprogramming violations.  Defaults to false."
-  }
+    option('meta') {
+      default false
+      description "Check for metaprogramming violations.  Defaults to false."
+    }
 
-  def run
-    directory = params['directory'].values.first
-    meta = params['meta'].values.first ? true : false
-    dir_loader = DirLoader.new
-    dir_loader.load_dir(directory)
+    def run
+      directory = params['directory'].values.first
+      meta = params['meta'].values.first ? true : false
+      dir_loader = DirLoader.new
+      dir_loader.load_dir(directory)
 
-    dir_loader.filenames.each do |filename|
-      puts "Checking #{filename}..."
-      FileParser.new(filename, Lint.new, true).violations?(meta)
+      dir_loader.filenames.each do |filename|
+        puts "Checking #{filename}..."
+        FileParser.new(filename, Lint.new, true).violations?(meta)
+      end
     end
-  end
-
   }
 end
 
