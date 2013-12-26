@@ -2,7 +2,7 @@ PATH
   remote: .
   specs:
     stylr (0.0.6)
-      main (~> 5.2.0)
+      main (~> 5.2, >= 5.2.0)
 
 GEM
   remote: https://rubygems.org/
