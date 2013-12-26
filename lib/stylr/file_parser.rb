@@ -53,6 +53,7 @@ module Stylr
 
     def display_no_error_message
       puts "Your file is free of errors."
+      puts
     end
 
     def display_errors
@@ -62,6 +63,7 @@ module Stylr
         line_number = hash.values.first
         puts "Line #{line_number}: #{@lint.send(error)}"
       end
+      puts
     end
   end
 end
