@@ -2,7 +2,7 @@ require "stylr"
 
 module Stylr
   describe Lint do
-    let(:l) { Lint.new }
+    let(:l) { Lint.new(YAML.load_file('stylr.yml')) }
 
     context "#violation?" do
       context "missing_parens" do
