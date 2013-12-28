@@ -3,9 +3,9 @@ require 'yaml'
 class Lint
   attr_reader :errors, :violations, :exception_violations, :metaprogramming_violations, :messages
 
-  def initialize
+  def initialize config = nil
     @errors = []
-    @config = YAML.load_file(ENV["HOME"] + "/.stylr.yml")
+    @config = config || YAML.load_file(ENV["HOME"] + "/.stylr.yml")
     setup_class_values
   end
 
