@@ -1,5 +1,7 @@
 <h1>stylr</h1>
 <h4>a Ruby styleguide enforcer</h4>
+<img src="https://badge.fury.io/rb/stylr.png"/>
+<img src="http://ike18t.no-ip.biz/job/Stylr/badge/icon"/>
 
 This gem will check if source code conforms to some elements of the Github Ruby Style Guidelines (https://github.com/styleguide/ruby) - currently supporting Ruby 2.1.0 (although it may work with earlier versions)
 
