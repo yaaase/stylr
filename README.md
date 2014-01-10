@@ -4,7 +4,7 @@
 [![Dependency Status](https://gemnasium.com/yaaase/stylr.png)](https://gemnasium.com/yaaase/stylr)
 <img src="https://badge.fury.io/rb/stylr.png"/>
 
-This gem will check if source code conforms to some elements of the Github Ruby Style Guidelines (https://github.com/styleguide/ruby) - currently supporting Ruby 2.1.0 (although it may work with earlier versions)
+This gem will check if source code conforms to some elements of the Github Ruby Style Guidelines (https://github.com/styleguide/ruby) - currently supporting Ruby 2.1.0 (although it may work with earlier versions).  Obviously it does not check against the subjective elements of the styleguide.
 
 Kind of raw still.  Currently supports checking against the following:
 
