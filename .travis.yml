@@ -1,0 +1,20 @@
+language: ruby
+script: 'bundle exec rake spec'
+cache: bundler
+rvm:
+  - 2.0.0
+  - 2.1.0
+  - ruby-head
+env:
+  - RUBY_PLATFORM="x86_64-linux"
+  - RUBY_PLATFORM="x86_64-darwin11.3.0"
+matrix:
+  allow_failures:
+    - rvm: ruby-head
+  notifications:
+    email:
+      recipients:
+        - mbillie1@gmail.com
+        - ike18t@gmail.com
+      on_success: change
+      on_failure: change
