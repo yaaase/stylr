@@ -14,8 +14,8 @@ Kind of raw still.  Currently supports checking against the following:
 * Use of the 'and' or 'or' operators (&& and || are preferred)
 * Use of 'then' on a multiline if/then construct
 * Spacing around parens
-* Spacing around brackets (this is a little broken on multi-line arrays)
-* Spacing around curly braces (this is also a little broken)
+* Spacing around brackets
+* Spacing around curly braces (this is broken when you interpolate into a regex)
 * Using the keyword 'for'
 * Spacing around commas
 * Using tab characters instead of soft tabs
