@@ -6,6 +6,7 @@ require 'stylr'
 module Stylr
   Main {
     argument('directory') {
+      argument_optional
       description "The directory to be parsed."
       cast :string
     }
@@ -15,15 +16,24 @@ module Stylr
       description "Check for metaprogramming violations.  Defaults to false."
     }
 
-    def run
-      directory = params['directory'].values.first
-      meta = params['meta'].values.first ? true : false
-      dir_loader = DirLoader.new
-      dir_loader.load_dir(directory)
+    option('version') {
+      default false
+      description "Display the current version"
+    }
 
-      dir_loader.filenames.each do |filename|
-        puts "Checking #{filename}..."
-        FileParser.new(filename, Lint.new, true).violations?(meta)
+    def run
+      if params['version'].values.first
+        puts "stylr version #{Stylr::VERSION}"
+      else
+        directory = params['directory'].values.first
+        meta = params['meta'].values.first ? true : false
+        dir_loader = DirLoader.new
+        dir_loader.load_dir(directory)
+
+        dir_loader.filenames.each do |filename|
+          puts "Checking #{filename}..."
+          FileParser.new(filename, Lint.new, true).violations?(meta)
+        end
       end
     end
   }
