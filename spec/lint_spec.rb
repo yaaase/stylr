@@ -119,6 +119,14 @@ module Stylr
         it "space after open bracket is bad" do
           l.violation?("list = [ 1, 2, 3]").should be_true
         end
+
+        it "newline after open bracket is fine" do
+          l.violation?("list = [\n").should be_false
+        end
+
+        it "close bracket fine as only thing on a line" do
+          l.violation?("       ]").should be_false
+        end
       end
 
       context "space around { and } is good" do
