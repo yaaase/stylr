@@ -48,7 +48,7 @@ module Stylr
       @file_string = @file_string.gsub(/\n/, UniqueConstant)
       @file_string = @lint.strip_multiline_strings(@file_string)
       @file_string = @file_string.gsub(/#{UniqueConstant}/, "#{UniqueConstant}\n")
-        @file_string = @file_string.split(/#{UniqueConstant}/)
+      @file_string = @file_string.split(/#{UniqueConstant}/)
     end
 
     def display_no_error_message
