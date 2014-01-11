@@ -24,7 +24,7 @@ module Stylr
 
     it "takes optionally a list of directories to exclude" do
       dir = File.join(Dir.pwd, 'spec', 'rdir')
-      ignores = File.join(Dir.pwd, 'spec', 'rdir', 'one')
+      ignores = "spec/rdir/one"
       d.load_dir(dir, [ignores])
       d.filenames.sort.should == ["#{dir}/two/two.rb", "#{dir}/three/three.rb", "#{dir}/base.rb"].sort
     end

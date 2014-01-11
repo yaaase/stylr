@@ -11,6 +11,7 @@ class DirLoader
     end
 
     ignored_dirs.each do |ignored_dir|
+      ignored_dir = File.join(Dir.pwd, ignored_dir)
       @filenames.reject! do |filename|
         filename =~ /#{ignored_dir}/
       end
