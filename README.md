@@ -30,7 +30,7 @@ Optionally checks for some metaprogramming, which you might not want in a large,
 * define_method
 * send
 
-All of these things are configurable via yml.  See "stylr.yml" in the repo, and place it in "~/.stylr.yml"
+All of these things are configurable via yml.  See "stylr.yml" in the repo.  Whatever directory you run stylr from will look for stylr.yml.
 
 Checks all *.rb files in the specified directory and subdirectories, excluding _spec.rb and _test.rb
 
