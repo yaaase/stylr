@@ -15,7 +15,7 @@ Kind of raw still.  Currently supports checking against the following:
 * Use of 'then' on a multiline if/then construct
 * Spacing around parens
 * Spacing around brackets
-* Spacing around curly braces (this is broken when you interpolate into a regex)
+* Spacing around curly braces
 * Using the keyword 'for'
 * Spacing around commas
 * Using tab characters instead of soft tabs
