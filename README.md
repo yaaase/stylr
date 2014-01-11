@@ -42,7 +42,11 @@ Checks all *.rb files in the specified directory and subdirectories, excluding _
 
 <code>stylr /path/to/directory --meta</code> also check for use of metaprogramming
 
-<code>stylr /path/to/directory --ignore=/path/to/directory/to_ignore</code> optionally ignore a particular directory
+<code>stylr /path/to/directory --ignore=dir_to_ignore</code> optionally ignore a particular directory relative to the current directory
+
+Here's what I typically check against the stylr source itself with (launched from the stylr root dir):
+
+<code>stylr . --ignore=spec</code>
 
 <h4>Contributing</h4>
 
