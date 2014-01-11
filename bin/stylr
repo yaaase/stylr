@@ -30,6 +30,7 @@ module Stylr
       if params['version'].values.first
         puts "stylr version #{Stylr::VERSION}"
       else
+        found_errors = false
         directory = params['directory'].values.first
         meta = params['meta'].values.first ? true : false
         ignores = params['ignore'].values
@@ -38,8 +39,11 @@ module Stylr
 
         dir_loader.filenames.each do |filename|
           puts "Checking #{filename}..."
-          FileParser.new(filename, Lint.new, true).violations?(meta)
+          if FileParser.new(filename, Lint.new, true).violations?(meta)
+            found_errors = true
+          end
         end
+        exit(found_errors ? 1 : 0)
       end
     end
   }
