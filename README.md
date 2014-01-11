@@ -42,6 +42,8 @@ Checks all *.rb files in the specified directory and subdirectories, excluding _
 
 <code>stylr /path/to/directory --meta</code> also check for use of metaprogramming
 
+<code>stylr /path/to/directory --ignore=/path/to/directory/to_ignore</code> optionally ignore a particular directory
+
 <h4>Contributing</h4>
 
 Please feel free to contribute!  There are issues and unimplemented features.  I'd love any help I can get.  Thanks!
