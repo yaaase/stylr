@@ -129,7 +129,7 @@ class Lint
       :brace_spacing                => "No space around { or before }.",
       :comma_spacing                => "No space after a comma.",
       :no_soft_tabs                 => "Used tab characters; please use soft tabs.",
-      :triple_equals                => "Use of triple-equals; please refactor.",
+      :triple_equals                => "Use of triple-equals.",
       :no_operator_spaces           => "Please use spaces around operators."
     }
   end
