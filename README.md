@@ -11,24 +11,25 @@ Kind of raw still.  Currently supports checking against the following:
 * Line length (user-configurable)
 * Missing parens around method definitions with parameters (ie, "def foo bar" is disallowed)
 * Trailing whitespace of any kind
-* Use of the 'and' or 'or' operators (&& and || are preferred)
-* Use of 'then' on a multiline if/then construct
+* Use of the <code>and</code> or <code>or</code> operators (&& and || are preferred)
+* Use of <code>then</code> on a multiline <code>if</code>/<code>then</code> construct
 * Spacing around parens
 * Spacing around brackets
 * Spacing around curly braces
-* Using the keyword 'for'
+* Using the keyword <code>for</code>
 * Spacing around commas
 * Using tab characters instead of soft tabs
-* Spacing around math operators (+, *, etc)
+* Spacing around math operators (<code>+</code>, <code>*</code>, etc)
+* Use of <code>===</code> (instead of <code>is_a?</code> or <code>kind_of?</code>)
 
 Optionally checks for some metaprogramming, which you might not want in a large, enterprise codebase with varied levels of skill on your development team.  This is not a condemnation of these practices - most of them are good, idiomatic Ruby.  You might not, however, want your junior developers checking in lots of metaprogrammed code.  Pass the '--meta' flag to enable these checks.
 
-* eval
-* class_eval
-* instance_eval
-* module_eval
-* define_method
-* send
+* <code>eval</code>
+* <code>class_eval</code>
+* <code>instance_eval</code>
+* <code>module_eval</code>
+* <code>define_method</code>
+* <code>send</code>
 
 All of these things are configurable via yml.  See "stylr.yml" in the repo.  Whatever directory you run stylr from will look for stylr.yml.
 
