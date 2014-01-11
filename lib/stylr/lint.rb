@@ -86,6 +86,7 @@ class Lint
       /[^\s][{}]|{[^\s]/            => :brace_spacing,
       /,[^ \n]/                     => :comma_spacing,
       /\t/                          => :no_soft_tabs,
+      /===/                         => :triple_equals,
       /[^\s]\+/                     => :no_operator_spaces,
       /\+[^\s=]/                    => :no_operator_spaces,
       /[^\s]-/                      => :no_operator_spaces
@@ -128,6 +129,7 @@ class Lint
       :brace_spacing                => "No space around { or before }.",
       :comma_spacing                => "No space after a comma.",
       :no_soft_tabs                 => "Used tab characters; please use soft tabs.",
+      :triple_equals                => "Use of triple-equals; please refactor.",
       :no_operator_spaces           => "Please use spaces around operators."
     }
   end

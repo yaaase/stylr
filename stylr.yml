@@ -19,3 +19,4 @@ used_module_eval: true
 used_instance_eval: true
 used_define_method: true
 dynamic_invocation: true
+triple_equals: true

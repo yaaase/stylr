@@ -217,6 +217,12 @@ module Stylr
         end
       end
 
+      context "triple equals" do
+        it "do not use triple equals" do
+          l.violation?("if x === y").should be_true
+        end
+      end
+
       context "comments" do
         it "ignores comments" do
           l.violation?("# a comment").should be_false
