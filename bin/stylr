@@ -21,14 +21,20 @@ module Stylr
       description "Display the current version"
     }
 
+    option('ignore') {
+      argument :optional
+      description "A list of directories to be ignored"
+    }
+
     def run
       if params['version'].values.first
         puts "stylr version #{Stylr::VERSION}"
       else
         directory = params['directory'].values.first
         meta = params['meta'].values.first ? true : false
+        ignores = params['ignore'].values
         dir_loader = DirLoader.new
-        dir_loader.load_dir(directory)
+        dir_loader.load_dir(directory, ignores)
 
         dir_loader.filenames.each do |filename|
           puts "Checking #{filename}..."
