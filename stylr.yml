@@ -1,5 +1,5 @@
 line_length: 80
-line_too_long: true
+line_too_long: false
 missing_parens: true
 trailing_whitespace: true
 the_word_and: true
