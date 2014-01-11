@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    stylr (0.0.12)
+    stylr (0.0.13)
       main (~> 5.2, >= 5.2.0)
 
 GEM
