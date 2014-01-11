@@ -127,6 +127,10 @@ module Stylr
         it "close bracket fine as only thing on a line" do
           l.violation?("       ]").should be_false
         end
+
+        it "interpolating into brackets is fine" do
+          l.violation?("/\#{def foo bar}/").should be_false
+        end
       end
 
       context "space around { and } is good" do
