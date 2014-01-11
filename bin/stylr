@@ -43,7 +43,12 @@ module Stylr
             found_errors = true
           end
         end
-        exit(found_errors ? 1 : 0)
+
+        if found_errors
+          exit(1)
+        else
+          puts "No errors found."
+        end
       end
     end
   }
