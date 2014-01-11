@@ -16,7 +16,7 @@ class Lint
 
   def violation?(line, number = 1)
     line = strip_strings(line)
-    remove_regex!(line)
+    line = remove_regex(line)
     abstract_violation?(@violations, line, number)
   end
 
@@ -34,12 +34,22 @@ class Lint
       start = /<<-?[A-Z]+/
       finish = (str[start] || "")[/[A-Z]+/]
       regexp = /#{start}.*\b#{finish}\b/
-      str.gsub!(/#{str[regexp]}/,'""') if str[regexp]
+      str.gsub!(/#{str[regexp]}/, '""') if str[regexp]
     end
   end
 
   def strip_strings(line)
     line.gsub(/".*"/, '""').gsub(/'.*'/, "''")
+  end
+
+  def remove_regex(line)
+    if possible_regex = line[/\/.*\//]
+      sexp = Ripper.sexp(possible_regex) || []
+      if sexp.flatten.grep(/regex/)
+        return line.gsub(possible_regex, 'REGEX')
+      end
+    end
+    return line
   end
 
   private
@@ -56,15 +66,6 @@ class Lint
       end
     end
     return false
-  end
-
-  def remove_regex!(line)
-    if possible_regex = line[/\/.*\//]
-      sexp = Ripper.sexp(possible_regex) || []
-      if sexp.flatten.grep(/regex/)
-        line.gsub!(/#{possible_regex}/, 'REGEX')
-      end
-    end
   end
 
   def setup_class_values

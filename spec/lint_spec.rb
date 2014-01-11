@@ -290,6 +290,12 @@ module Stylr
       end
     end
 
+    context "regex stripping" do
+      it "removes regexes" do
+        l.remove_regex("start = /<<-?[A-Z]+/").should == "start = REGEX"
+      end
+    end
+
     context "error messages" do
       it "keeps track of your mistakes and their lines, defaulting to line #1" do
         l.violation?("def foo bar")
