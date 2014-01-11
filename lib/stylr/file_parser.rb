@@ -27,7 +27,6 @@ module Stylr
         display_errors if @display
         true
       else
-        display_no_error_message if @display
         false
       end
     end
@@ -49,11 +48,6 @@ module Stylr
       @file_string = @lint.strip_multiline_strings(@file_string)
       @file_string = @file_string.gsub(/#{UniqueConstant}/, "#{UniqueConstant}\n")
       @file_string = @file_string.split(/#{UniqueConstant}/)
-    end
-
-    def display_no_error_message
-      puts "Your file is free of errors."
-      puts
     end
 
     def display_errors
