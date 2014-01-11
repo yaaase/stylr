@@ -45,7 +45,7 @@ class Lint
   def remove_regex(line)
     if possible_regex = line[/\/.*\//]
       sexp = Ripper.sexp(possible_regex) || []
-      if sexp.flatten.grep(/regex/)
+      if sexp.flatten.grep(/regex/) # *looks at the ground sheepishly*
         return line.gsub(possible_regex, 'REGEX')
       end
     end
