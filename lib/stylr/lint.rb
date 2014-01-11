@@ -49,7 +49,7 @@ class Lint
         return line.gsub(possible_regex, 'REGEX')
       end
     end
-    return line
+    line
   end
 
   private
