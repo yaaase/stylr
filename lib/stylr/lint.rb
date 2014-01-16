@@ -104,7 +104,7 @@ class Lint
       /\bdefine_method\b/           => :used_define_method,
       /\w+\.send.*".*#\{/           => :dynamic_invocation,
       /def\s+method_missing/        => :used_method_missing,
-      /respond_to_missing\?/        => :used_respond_to_missing
+      /def\s+respond_to_missing\?/  => :used_respond_to_missing
     }.delete_if { |_, v| !@config[v.to_s] }
 
     @commented_line = [

@@ -276,7 +276,7 @@ module Stylr
       end
 
       it "also checks for respond_to_missing" do
-        l.meta_violation?("if foo.respond_to_missing?").should be_true
+        l.meta_violation?("def respond_to_missing?").should be_true
       end
     end
 
