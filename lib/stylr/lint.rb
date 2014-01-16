@@ -102,7 +102,9 @@ class Lint
       /\bmodule_eval\b/             => :used_module_eval,
       /\binstance_eval\b/           => :used_instance_eval,
       /\bdefine_method\b/           => :used_define_method,
-      /\w+\.send.*".*#\{/           => :dynamic_invocation
+      /\w+\.send.*".*#\{/           => :dynamic_invocation,
+      /def\s+method_missing/        => :used_method_missing,
+      /respond_to_missing\?/        => :used_respond_to_missing
     }.delete_if { |_, v| !@config[v.to_s] }
 
     @commented_line = [
@@ -124,6 +126,8 @@ class Lint
       :used_class_eval              => "Used class_eval.",
       :used_module_eval             => "Used module_eval.",
       :used_instance_eval           => "Used instance_eval.",
+      :used_method_missing          => "Please do not override method_missing.",
+      :used_respond_to_missing      => "Please do not use respond_to_missing?.",
       :paren_spacing                => "Space after ( or before ).",
       :bracket_spacing              => "Space after [ or before ].",
       :brace_spacing                => "No space around { or before }.",

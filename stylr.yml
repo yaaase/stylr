@@ -18,5 +18,7 @@ used_class_eval: true
 used_module_eval: true
 used_instance_eval: true
 used_define_method: true
+used_method_missing: true
+used_respond_to_missing: true
 dynamic_invocation: true
 triple_equals: true

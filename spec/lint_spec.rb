@@ -270,6 +270,14 @@ module Stylr
       it "and even instance eval!" do
         l.meta_violation?("instance_eval &block").should be_true
       end
+
+      it "checks for method_missing of course" do
+        l.meta_violation?("def method_missing").should be_true
+      end
+
+      it "also checks for respond_to_missing" do
+        l.meta_violation?("if foo.respond_to_missing?").should be_true
+      end
     end
 
     context "#exception_violation?" do
