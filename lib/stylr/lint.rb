@@ -89,7 +89,8 @@ class Lint
       /===/                         => :triple_equals,
       /[^\s]\+/                     => :no_operator_spaces,
       /\+[^\s=]/                    => :no_operator_spaces,
-      /[^\s]-/                      => :no_operator_spaces
+      /[^\s]-/                      => :no_operator_spaces,
+      /![^\S\n]/                    => :space_after_bang,
     }.delete_if { |_, v| !@config[v.to_s] }
 
     @exception_violations = {
@@ -134,7 +135,8 @@ class Lint
       :comma_spacing                => "No space after a comma.",
       :no_soft_tabs                 => "Used tab characters; please use soft tabs.",
       :triple_equals                => "Use of triple-equals.",
-      :no_operator_spaces           => "Please use spaces around operators."
+      :no_operator_spaces           => "Please use spaces around operators.",
+      :space_after_bang             => "Space after !."
     }
   end
 

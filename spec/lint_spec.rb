@@ -101,6 +101,16 @@ module Stylr
         end
       end
 
+      context "no space after !" do
+        it "space after ! is bad" do
+          l.violation?("if ! condition").should be_true
+        end
+
+        it "line ending with ! is fine" do
+          l.violation?("shitty_rails_object.save!").should be_false
+        end
+      end
+
       context "soft tabs" do
         it "don't use actual tabs" do
           l.violation?("\t").should be_true
