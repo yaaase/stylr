@@ -109,6 +109,10 @@ module Stylr
         it "line ending with ! is fine" do
           l.violation?("shitty_rails_object.save!").should be_false
         end
+
+        it "bang methods followed by a block is not an error" do
+          l.violation?("things.reject! do |foo|").should be_false
+        end
       end
 
       context "nested ternaries" do

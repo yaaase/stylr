@@ -90,7 +90,7 @@ class Lint
       /[^\s]\+/                     => :no_operator_spaces,
       /\+[^\s=]/                    => :no_operator_spaces,
       /[^\s]-/                      => :no_operator_spaces,
-      /![^\S\n]/                    => :space_after_bang,
+      /![^\S\n][^do\s]/             => :space_after_bang,
       /\s\?\s.*\s\?\s/              => :nested_ternary
     }.delete_if { |_, v| !@config[v.to_s] }
 
