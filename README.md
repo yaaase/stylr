@@ -21,6 +21,8 @@ Kind of raw still.  Currently supports checking against the following:
 * Using tab characters instead of soft tabs
 * Spacing around math operators (<code>+</code>, <code>*</code>, etc)
 * Use of <code>===</code> (instead of <code>is_a?</code> or <code>kind_of?</code>)
+* Spacing after the negation (<code>!</code>) operator
+* Nesting of (one-line) ternary expressions
 
 Optionally checks for some metaprogramming, which you might not want in a large, enterprise codebase with varied levels of skill on your development team.  This is not a condemnation of these practices - most of them are good, idiomatic Ruby.  You might not, however, want your junior developers checking in lots of metaprogrammed code.  Pass the '--meta' flag to enable these checks.
 
