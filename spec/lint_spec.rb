@@ -111,6 +111,12 @@ module Stylr
         end
       end
 
+      context "nested ternaries" do
+        it "do not nest ternaries for chrissake" do
+          l.violation?("x = y ? (x < 2 ? 5 : 2) : 55").should be_true
+        end
+      end
+
       context "soft tabs" do
         it "don't use actual tabs" do
           l.violation?("\t").should be_true

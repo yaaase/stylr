@@ -23,3 +23,4 @@ used_respond_to_missing: true
 dynamic_invocation: true
 triple_equals: true
 space_after_bang: true
+nested_ternary: true
