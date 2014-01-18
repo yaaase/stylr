@@ -30,6 +30,8 @@ Optionally checks for some metaprogramming, which you might not want in a large,
 * <code>module_eval</code>
 * <code>define_method</code>
 * <code>send</code>
+* <code>def method_missing</code>
+* <code>def respond_to_missing?</code>
 
 All of these things are configurable via yml.  See "stylr.yml" in the repo.  Whatever directory you run stylr from will look for stylr.yml.
 
