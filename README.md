@@ -49,9 +49,9 @@ Checks all *.rb files in the specified directory and subdirectories, excluding _
 
 <code>stylr /path/to/directory --ignore=dir_to_ignore</code> optionally ignore a particular directory relative to the current directory
 
-Here's what I typically check against the stylr source itself with (launched from the stylr root dir):
+Here's what Rake uses to check against the stylr source itself with (launched from the stylr root dir):
 
-<code>stylr . --ignore=spec</code>
+<code>stylr . --ignore=spec --ignore=vendor</code>
 
 <h4>Contributing</h4>
 
