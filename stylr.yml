@@ -1,4 +1,4 @@
-line_length: 80
+line_length: 180
 line_too_long: true
 missing_parens: true
 trailing_whitespace: true

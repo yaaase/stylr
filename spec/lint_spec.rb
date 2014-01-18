@@ -186,8 +186,8 @@ module Stylr
       end
 
       context "line_too_long" do
-        it "dislikes lines of >= 80 chars" do
-          l.line_too_long_violation?("#{'a' * 80}").should be_true
+        it "dislikes lines of >= some number of chars" do
+          l.line_too_long_violation?("#{'a' * l.instance_variable_get(:@config)["line_length"]}").should be_true
         end
       end
 
