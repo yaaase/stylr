@@ -4,9 +4,9 @@ require 'ripper'
 class Lint
   attr_reader :errors, :violations, :exception_violations, :metaprogramming_violations, :messages
 
-  def initialize(config = nil)
+  def initialize(config)
     @errors = []
-    @config = config || YAML.load_file(File.join(Dir.pwd, 'stylr.yml'))
+    @config = config
     setup_class_values
   end
 

@@ -37,9 +37,15 @@ module Stylr
         dir_loader = DirLoader.new
         dir_loader.load_dir(directory, ignores)
 
+        config_file_path = File.join(Dir.pwd, 'stylr.yml')
+        if !File.exists?(config_file_path)
+          puts 'File stylr.yml does not exist'
+          exit(1)
+        end
+        config = YAML.load_file(config_file_path)
         dir_loader.filenames.each do |filename|
           puts "Checking #{filename}..."
-          if FileParser.new(filename, Lint.new, true).violations?(meta)
+          if FileParser.new(filename, Lint.new(config), true).violations?(meta)
             found_errors = true
           end
         end
