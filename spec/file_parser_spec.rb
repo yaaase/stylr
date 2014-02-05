@@ -43,7 +43,7 @@ module Stylr
       end
 
       it "knows when something has failed" do
-        @f.violations?(meta = true).should be_true
+        @f.violations?(true).should be_true
       end
     end
 
